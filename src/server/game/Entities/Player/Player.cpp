@@ -11670,7 +11670,7 @@ void Player::SendInitialPacketsAfterAddToMap()
     // update zone
     uint32 newzone, newarea;
     GetZoneAndAreaId(newzone, newarea);
-    UpdateZone(newzone, newarea, true);                            // also call SendInitWorldStates();
+    UpdateZone(newzone, newarea);                            // also call SendInitWorldStates();
 
     if (HasStunAura())
         SetMovement(MOVE_ROOT);
