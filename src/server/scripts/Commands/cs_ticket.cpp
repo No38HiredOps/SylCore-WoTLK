@@ -202,7 +202,7 @@ public:
         return true;
     }
 
-    static bool HandleGMTicketCompleteCommand(ChatHandler* handler, uint32 ticketId)
+    static bool HandleGMTicketCompleteCommand(ChatHandler* handler, uint32 ticketId, std::optional<std::string> response)
     {
         GmTicket* ticket = sTicketMgr->GetTicket(ticketId);
         if (!ticket || ticket->IsClosed() || ticket->IsCompleted())
@@ -220,12 +220,8 @@ public:
             return true;
         }
 
-        // This code crashed the server because of an "ACCESS_VIOLATION", since the response was nullptr, and would always be a nullptr, since the command doesn't accept a response value.
-        /*
-        char* response = strtok(nullptr, "\n");
         if (response)
-            ticket->AppendResponse(response);
-        */
+            ticket->AppendResponse(response.value());
 
         if (Player* player2 = ticket->GetPlayer())
         {
