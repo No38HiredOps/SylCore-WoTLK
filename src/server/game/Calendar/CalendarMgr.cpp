@@ -401,7 +401,8 @@ void CalendarMgr::DeleteOldEvents()
 CalendarEventStore CalendarMgr::GetEventsCreatedBy(ObjectGuid guid, bool includeGuildEvents)
 {
     CalendarEventStore result;
-    for (CalendarEventStore::const_iterator itr = _events.begin(); itr != _events.end(); ++itr)
+    for (CalendarEventStore::const_iterator itr = _events.begin(); itr != _events.end();)
+    {
         if ((*itr)->GetCreatorGUID() == guid && (includeGuildEvents || (!(*itr)->IsGuildEvent() && !(*itr)->IsGuildAnnouncement())))
             result.insert(*itr);
 
