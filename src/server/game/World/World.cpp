@@ -77,6 +77,7 @@
 #include "PoolMgr.h"
 #include "Realm.h"
 #include "ScriptMgr.h"
+#include "ServerMailMgr.h"
 #include "SkillDiscovery.h"
 #include "SkillExtraItems.h"
 #include "SmartAI.h"
@@ -1684,8 +1685,8 @@ void World::SetInitialWorldSettings()
     LOG_INFO("server.loading", "Loading Player Level Dependent Mail Rewards...");
     sObjectMgr->LoadMailLevelRewards();
 
-    LOG_INFO("server.loading", "Load Mail Server Template...");
-    sObjectMgr->LoadMailServerTemplates();
+    LOG_INFO("server.loading", "Load Mail Server definitions...");
+    sServerMailMgr->LoadMailServerTemplates();
 
     // Loot tables
     LoadLootTables();
